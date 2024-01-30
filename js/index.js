@@ -1,6 +1,6 @@
 kaboom();
 
-// this is the whole game scene is happening (game starts)
+// this is the game scene starts (game over logic)
 scene ("game", () => {
 
 // CONSTANTS
@@ -113,11 +113,15 @@ onKeyPress("space", () => {
 
 })
 
-// this is where the game scene overs (game over)
+// this is where the game scene overs (game over logic)
 scene("gameover", () => {
     add([
         text("gameover!")
-    ])
+    ]);
+
+    onKeyPress("enter", () => {
+        go("game");
+    });
 })
 
 go ("game");
