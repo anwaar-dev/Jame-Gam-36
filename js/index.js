@@ -1,5 +1,8 @@
 kaboom();
 
+// this is the whole game scene is happening (game starts)
+scene ("game", () => {
+
 // CONSTANTS
 setGravity(1600)
 const SPEED = 300;
@@ -11,8 +14,6 @@ onUpdate(() => {
     destroy(en)
 })
 })
-
-
 
 // load a sprite from an image
 loadSprite("player", "assets/characters/player.png")
@@ -55,9 +56,11 @@ Player.onCollide("Bullet", (en) => {
 	Player.hurt(1)
     destroy(en)
 })
+
 // triggers when hp reaches 0
 Player.on("death", () => {
     destroy(Player)
+    go("gameover")
 })
 
 // add platforms
@@ -107,3 +110,14 @@ onKeyPress("space", () => {
         Player.jump();
     }
 });
+
+})
+
+// this is where the game scene overs (game over)
+scene("gameover", () => {
+    add([
+        text("gameover!")
+    ])
+})
+
+go ("game");
