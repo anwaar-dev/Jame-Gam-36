@@ -11,27 +11,48 @@ loadSprite("player", "assets/characters/player.png")
 // add Player to screen
 const Player = add([
     sprite("player"),
-    pos(80, 40),
+    pos(0, height() - 160),
     area(),
     body(),
+    stay(),
 ])
 
-// add platform
+// add platforms
 add([
-    rect(width(), 58),
+    rect(width()*2, 58),
     pos(0, height() - 58),
     outline(2),
     area(),
     body({ isStatic: true }),
     color(127, 200, 255),
 ])
+add([
+    rect(200, 30),
+    pos(0, height() - 160),
+    outline(2),
+    area(),
+    body({ isStatic: true }),
+    color(127, 200, 255),
+])
+add([
+    rect(200, 30),
+    pos(430, height() - 180),
+    outline(2),
+    area(),
+    body({ isStatic: true }),
+    color(127, 200, 255),
+])
+	camPos(Player.pos.x, height()/2)
 
-// move by SPEED pixels per frame every frame when left arrow key is being held down
+
+// move by SPEED px per frame
 onKeyDown("a", () => {
     Player.move(-SPEED, 0)
+	camPos(Player.pos.x, height()/2)
 })
 onKeyDown("d", () => {
-    Player.move(SPEED, 0)
+    Player.move(SPEED, 0);
+	camPos(Player.pos.x, height()/2)
 })
 
 // .jump() when "space" key is pressed
