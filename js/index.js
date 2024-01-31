@@ -57,22 +57,16 @@ onClick(() => {
         "MyBullet",
     ])
 })
-// document.addEventListener('mousemove', event => {
-//     console.log(event) // THIS should do what you want 
-//     mousepos = (event.clientX, event.clientY);
-// })
 
-Player.onCollide("MyBullet", (mb) => {
-    console.log(mousePos().sub(Player.pos))
-    console.log(Player.pos.angle(Enemy1.pos))
-    // Player.hurt(1)
-    // destroy(mb) player.pos.sub(enemy.pos).unit()
+Enemy1.onCollide("MyBullet", (mb) => {
+    Enemy1.hurt(1)
+    destroy(mb)
 })
-
 
 // enemy throwing bullets at player
 loop(1, () => {
 if (Player.exists()) {
+    if (!Enemy1.exists()) return
  	const en = add([
     	sprite("bullet"),
     	pos(Enemy1.pos.x,Enemy1.pos.y+20),
@@ -89,7 +83,6 @@ Player.onCollide("Bullet", (en) => {
     destroy(en)
 })
 
-
 // Here we move towards the player every frame if the current state is "move"
 Enemy1.onStateUpdate("move", () => {
     if (!Player.exists()) return
@@ -97,12 +90,15 @@ Enemy1.onStateUpdate("move", () => {
     Enemy1.move(dir.scale(ENEMY_SPEED))
 })
 
-
 // triggers when hp reaches 0
 Player.on("death", () => {
     destroy(Player)
     go("gameover")
 })
+Enemy1.on("death", () => {
+    destroy(Enemy1)
+})
+
 
 // add platforms
 add([
@@ -133,7 +129,6 @@ add([
     "obstacle"
 ])
 	camPos(Player.pos.x, height()/2)
-
 
 // move by SPEED px per frame
 onKeyDown("a", () => {
