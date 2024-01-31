@@ -1,4 +1,6 @@
-kaboom();
+kaboom({
+    background: [141, 183, 255],
+})
 
 // this is the game scene starts (game over logic)
 scene ("game", () => {
@@ -6,13 +8,13 @@ scene ("game", () => {
 // CONSTANTS
 setGravity(1600)
 const SPEED = 300;
+const ENEMY_SPEED = 200;
 
 // This will run every FRAME
 onUpdate(() => {
     // Enemy1.move(Player.pos.x, 0)
-    onCollide("Bullet", "obstacle", (en) => {
-    destroy(en)
-})
+    onCollide("MyBullet", "obstacle", (mb) => {destroy(mb)})
+    onCollide("Bullet", "obstacle", (en) => {destroy(en)})
 })
 
 // load a sprite from an image
@@ -27,6 +29,7 @@ const Player = add([
     body(),
     stay(),
     health(5),
+    anchor("center"),
     "player"
 ])
 
@@ -36,12 +39,40 @@ const Enemy1 = add([
     pos(200, height() - 160),
     area(),
     body(),
+    anchor("center"),
     health(3),
+    state("move", [ "idle", "attack", "move" ]),
     "enemy"
 ])
 
-// enemy throwing feces at player
+let mousepos;
+// Player Shooting bullets at Enemy
+onClick(() => {
+    const mb = add([
+        sprite("bullet"),
+        pos(Player.pos.x,Player.pos.y),
+        area(),
+        move(toWorld(mousePos()).sub(Player.pos),1500),
+        // offscreen({destroy: true, distance: 400}),
+        "MyBullet",
+    ])
+})
+// document.addEventListener('mousemove', event => {
+//     console.log(event) // THIS should do what you want 
+//     mousepos = (event.clientX, event.clientY);
+// })
+
+Player.onCollide("MyBullet", (mb) => {
+    console.log(mousePos().sub(Player.pos))
+    console.log(Player.pos.angle(Enemy1.pos))
+    // Player.hurt(1)
+    // destroy(mb) player.pos.sub(enemy.pos).unit()
+})
+
+
+// enemy throwing bullets at player
 loop(1, () => {
+if (Player.exists()) {
  	const en = add([
     	sprite("bullet"),
     	pos(Enemy1.pos.x,Enemy1.pos.y+20),
@@ -50,12 +81,22 @@ loop(1, () => {
     	offscreen({ destroy: true }),
     	"Bullet",
 	])
+ }
 })
 
 Player.onCollide("Bullet", (en) => {
 	Player.hurt(1)
     destroy(en)
 })
+
+
+// Here we move towards the player every frame if the current state is "move"
+Enemy1.onStateUpdate("move", () => {
+    if (!Player.exists()) return
+    const dir = Player.pos.sub(Enemy1.pos).unit()
+    Enemy1.move(dir.scale(ENEMY_SPEED))
+})
+
 
 // triggers when hp reaches 0
 Player.on("death", () => {
@@ -65,7 +106,7 @@ Player.on("death", () => {
 
 // add platforms
 add([
-    rect(width()*2, 58),
+    rect(width(), 58),
     pos(-100, height() - 58),
     outline(2),
     area(),
@@ -105,6 +146,11 @@ onKeyDown("d", () => {
 })
 
 // .jump() when "space" key is pressed
+onKeyPress("w", () => {
+    if (Player.isGrounded()) {
+        Player.jump();
+    }
+});
 onKeyPress("space", () => {
     if (Player.isGrounded()) {
         Player.jump();
@@ -119,7 +165,7 @@ scene("gameover", () => {
         text("gameover!")
     ]);
 
-    onKeyPress("enter", () => {
+    onKeyPress("space", () => {
         go("game");
     });
 })
