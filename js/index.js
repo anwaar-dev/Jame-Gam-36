@@ -1,5 +1,5 @@
 kaboom({
-    background: [141, 183, 255],
+    background: [0, 0, 0, 0],
 })
 
 // this is the game scene starts (game over logic)
@@ -19,7 +19,11 @@ onUpdate(() => {
 
 // load a sprite from an image
 loadSprite("player", "assets/characters/player.png")
+loadSprite("BG1", "assets/BG1.svg")
 loadSprite("bullet", "assets/bullet.png")
+
+// add([sprite("BG1", {width:1080, height:height()})])
+
 
 // add Player to screen
 const Player = add([
@@ -44,6 +48,7 @@ const Enemy1 = add([
     state("move", [ "idle", "attack", "move" ]),
     "enemy"
 ])
+
 
 let mousepos;
 // Player Shooting bullets at Enemy
@@ -102,8 +107,17 @@ Enemy1.on("death", () => {
 
 // add platforms
 add([
-    rect(width(), 58),
+    rect(800, 58),
     pos(-100, height() - 58),
+    outline(2),
+    area(),
+    body({ isStatic: true }),
+    color(127, 200, 255),
+    "obstacle"
+])
+add([
+    rect(800, 58),
+    pos(850, height() - 58),
     outline(2),
     area(),
     body({ isStatic: true }),
