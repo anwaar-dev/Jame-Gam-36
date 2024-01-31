@@ -125,7 +125,7 @@ scene("game", () => {
     // add platforms
 
     add([
-        rect(width(), 58),
+        rect(width()*4, 58),
         pos(-100, height() - 58),
         outline(2),
         area(),
