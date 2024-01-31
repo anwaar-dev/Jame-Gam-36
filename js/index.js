@@ -125,7 +125,6 @@ scene("game", () => {
         destroy(Enemy2)
     })
 
-
     // add platforms
 
     add([
@@ -137,7 +136,6 @@ scene("game", () => {
         color(127, 200, 255),
         "obstacle"
     ])
-
     add([
         rect(200, 30),
         pos(0, height() - 160),
