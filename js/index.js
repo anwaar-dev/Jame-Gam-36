@@ -8,6 +8,7 @@ scene("game", () => {
     // CONSTANTS
     setGravity(1600)
     const SPEED = 300;
+    const BULLET_SPEED = 700;
     const ENEMY_SPEED = 200;
 
     // This will run every FRAME
@@ -66,7 +67,7 @@ scene("game", () => {
             sprite("bullet"),
             pos(Player.pos.x, Player.pos.y),
             area(),
-            move(toWorld(mousePos()).sub(Player.pos), 1500),
+            move(toWorld(mousePos()).sub(Player.pos), BULLET_SPEED),
             // offscreen({destroy: true, distance: 400}),
             "MyBullet",
         ])
@@ -90,7 +91,7 @@ scene("game", () => {
                 sprite("bullet"),
                 pos(Enemy1.pos.x, Enemy1.pos.y + 20),
                 area(),
-                move(Player.pos.angle(Enemy1.pos), 1500),
+                move(Player.pos.angle(Enemy1.pos), BULLET_SPEED),
                 offscreen({ destroy: true }),
                 "Bullet",
             ])
@@ -105,8 +106,11 @@ scene("game", () => {
     // Here we move towards the player every frame if the current state is "move"
     Enemy1.onStateUpdate("move", () => {
         if (!Player.exists()) return
-        const dir = Player.pos.sub(Enemy1.pos).unit()
-        Enemy1.move(dir.scale(ENEMY_SPEED))
+            let distance = Player.pos.x - Enemy1.pos.x;
+            if (distance<250&&distance>-250) {
+                const dir = Player.pos.sub(Enemy1.pos).unit()
+                Enemy1.move(dir.scale(ENEMY_SPEED))
+            }
     })
 
     // triggers when hp reaches 0
