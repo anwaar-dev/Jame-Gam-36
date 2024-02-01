@@ -106,10 +106,12 @@ onClick(() => {
 })
 Enemy1.onCollide("MyBullet", (mb) => {
     Enemy1.hurt(1)
+    addBlood({ pos: Enemy1.pos })
     destroy(mb)
 })
 Enemy2.onCollide("MyBullet", (mb) => {
     Enemy2.hurt(0.5)
+    addBlood({ pos: Enemy2.pos })
     destroy(mb)
 })
 
