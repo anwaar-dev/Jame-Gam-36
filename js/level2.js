@@ -9,7 +9,7 @@ const Player = add([
     area(),
     body(),
     stay(),
-    health(5000),
+    health(15),
     anchor("center"),
     "player"
 ])    
@@ -331,8 +331,6 @@ Enemy5.onStateUpdate("move", () => {
         "obstacle"
     ])
 
-
-
     // --The controls--
 
 // move by SPEED px per frame
@@ -379,4 +377,4 @@ Enemy5.on("death", () => {
     destroy(Enemy5)
 })
     
-    })
+})

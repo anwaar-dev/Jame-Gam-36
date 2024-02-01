@@ -34,10 +34,9 @@ loadSprite("portal", "assets/portal.png")
 
 // Gameover
 scene("gameover", () => {
-    
     add([
         text("gameover! press enter to retry"),
-        // pos(100, 500)
+        pos(100, 500)
     ]);
     onKeyPress("enter", () => {
         go("level1")
