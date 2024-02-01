@@ -25,6 +25,7 @@ loadSprite("enemy2", "assets/characters/enemy1.png")
 loadSprite("enemy3", "assets/characters/enemy1.png")
 loadSprite("bullet", "assets/bullet.png")
 loadSprite("plat1", "assets/level1/level1-1.png")
+loadSprite("portal", "assets/portal.png")
 
 
 
