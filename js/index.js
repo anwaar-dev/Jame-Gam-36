@@ -31,9 +31,7 @@ loadSprite("plat1", "assets/level1/level1-1.png")
 
 // Gameover
 scene("gameover", () => {
-    kaboom({
-    background: [0, 0, 0]
-    })
+    
     add([
         text("gameover! press enter to retry"),
         // pos(100, 500)

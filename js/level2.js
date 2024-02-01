@@ -1,5 +1,5 @@
 // Game Scene 1
-scene("level1", () => {
+scene("level2", () => {
 
 
 // add Player to screen
@@ -48,17 +48,6 @@ const Enemy3 = add([
     health(3),
     state("move", ["idle", "attack", "move"]),
     "enemy3"
-])
-
-// Portal
-const Portal = add([
-        rect(100, 100),
-        pos(2600, height() - 400),
-        outline(2),
-        area(),
-        body({ isStatic: true }),
-        color(127, 200, 255),
-        "portal"
 ])
 
 
@@ -116,9 +105,6 @@ Player.onCollide("Bullet", (en) => {
     Player.hurt(0.5)
     addBlood({ pos: Player.pos, colour: 'red'})
     destroy(en)
-})
-Player.onCollide("portal", (Portal) => {
-    go("level2")
 })
 
 // Here we move towards the player every frame if the current state is "move"
@@ -215,7 +201,6 @@ Enemy3.onStateUpdate("move", () => {
     ])
 
 
-
     // --The controls--
 
 // move by SPEED px per frame
@@ -257,8 +242,3 @@ Enemy3.on("death", () => {
 })
 
 })
-
-
-
-// Go to scene
-go("level1")
