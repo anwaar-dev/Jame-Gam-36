@@ -16,7 +16,7 @@ loadSprite("player", "assets/characters/player.png")
 loadSprite("enemy1", "assets/characters/player.png")
 loadSprite("enemy2", "assets/characters/enemy2.png")
 loadSprite("bullet", "assets/bullet.png")
-loadSprite("plat1", "assets/level1/level1-1.svg")
+loadSprite("plat1", "assets/level1/level1-1.png")
 
 
 // add Player to screen
