@@ -10,16 +10,20 @@ const DEF_SATURATION = 0.9
 const DEF_LIGHTNESS = 0.7
 
 
-function addBlood(opt = {}) {
+function addBlood(opt = {}) { 
 	const sample = (s) => typeof s === "function" ? s() : s
 	for (let i = 0; i < (opt.count ?? DEF_COUNT); i++) {
+		let clr;
+		if (opt.colour=='red'){clr=rgb(138,23,24);}
+		else if (opt.colour=='green'){clr=rgb(0,249,173)}
+		else{clr=rgb(0,0,0)}
 		const p = add([
 			pos(sample(opt.pos ?? vec2(0, 0))),
 			choose([
 				circle(rand(3, 4)),
 				circle(rand(3, 7)),
 			]),
-			color(138,21,21),
+			color(clr),
 			opacity(1),
 			lifespan(4),
 			scale(1),

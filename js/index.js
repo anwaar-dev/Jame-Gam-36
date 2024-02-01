@@ -13,7 +13,7 @@ onUpdate(() => {
 // --loading sprites--
 
 loadSprite("player", "assets/characters/player.png")
-loadSprite("enemy1", "assets/characters/player.png")
+loadSprite("enemy1", "assets/characters/enemy.png")
 loadSprite("enemy2", "assets/characters/enemy2.png")
 loadSprite("bullet", "assets/bullet.png")
 loadSprite("plat1", "assets/level1/level1-1.png")
@@ -106,12 +106,12 @@ onClick(() => {
 })
 Enemy1.onCollide("MyBullet", (mb) => {
     Enemy1.hurt(1)
-    addBlood({ pos: Enemy1.pos })
+    addBlood({ pos: Enemy1.pos, colour: 'green'})
     destroy(mb)
 })
 Enemy2.onCollide("MyBullet", (mb) => {
     Enemy2.hurt(0.5)
-    addBlood({ pos: Enemy2.pos })
+    addBlood({ pos: Enemy2.pos, colour: 'red'})
     destroy(mb)
 })
 
@@ -131,6 +131,7 @@ loop(1, () => {
 })
 Player.onCollide("Bullet", (en) => {
     Player.hurt(1)
+    addBlood({ pos: Player.pos, colour: 'red'})
     destroy(en)
 })
 
