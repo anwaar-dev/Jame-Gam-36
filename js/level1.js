@@ -52,7 +52,7 @@ const Enemy3 = add([
 
 // Portal
 const Portal = add([
-        rect(100, 100),
+    	sprite("portal"),
         pos(2600, height() - 400),
         outline(2),
         area(),
