@@ -1,15 +1,15 @@
-// Game Scene 1
+// Game Scene 2
 scene("level2", () => {
 
 
 // add Player to screen
 const Player = add([
     sprite("player"),
-    pos(0, height() - 160),
+    pos(-500, height() - 160),
     area(),
     body(),
     stay(),
-    health(5),
+    health(5000),
     anchor("center"),
     "player"
 ])    
@@ -37,8 +37,6 @@ const Enemy2 = add([
     state("move", ["idle", "attack", "move"]),
     "enemy2"
 ])
-
-// add Enemy to screen
 const Enemy3 = add([
     sprite("enemy3"),
     pos(750, height() - 200),
@@ -49,7 +47,35 @@ const Enemy3 = add([
     state("move", ["idle", "attack", "move"]),
     "enemy3"
 ])
+const Enemy4 = add([
+    sprite("enemy4"),
+    pos(4200, height() - 800),
+    area(),
+    anchor("center"),
+    health(5),
+    state("move", ["idle", "attack", "move"]),
+    "enemy4"
+])
+const Enemy5 = add([
+    sprite("enemy5"),
+    pos(3500, height() - 800),
+    area(),
+    anchor("center"),
+    health(5),
+    state("move", ["idle", "attack", "move"]),
+    "enemy4"
+])
 
+// Portal
+const Portal = add([
+        rect(100, 100),
+        pos(4700, height() - 400),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 200, 255),
+        "portal"
+])
 
 let mousepos;
 // Player Shooting bullets at Enemy
@@ -78,6 +104,16 @@ Enemy3.onCollide("MyBullet", (mb) => {
     addBlood({ pos: Enemy3.pos, colour: 'green'})
     destroy(mb)
 })
+Enemy4.onCollide("MyBullet", (mb) => {
+    Enemy4.hurt(1)
+    addBlood({ pos: Enemy4.pos, colour: 'green'})
+    destroy(mb)
+})
+Enemy5.onCollide("MyBullet", (mb) => {
+    Enemy5.hurt(1)
+    addBlood({ pos: Enemy5.pos, colour: 'green'})
+    destroy(mb)
+})
 Player.onCollide("enemy2", () => {
     Player.hurt(0.5)
     addBlood({ pos: Player.pos, colour: 'red'})
@@ -101,10 +137,54 @@ loop(1, () => {
         ])
     }
 })
+
+loop(1, () => {
+    if (Player.exists()) {
+        if (!Enemy2.exists()) return
+        const en = add([
+            sprite("bullet"),
+            pos(Enemy2.pos.x, Enemy2.pos.y + 20),
+            area(),
+            move(Player.pos.angle(Enemy2.pos), BULLET_SPEED),
+            offscreen({ destroy: true }),
+            "Bullet",
+        ])
+    }
+})
+loop(1, () => {
+    if (Player.exists()) {
+        if (!Enemy4.exists()) return
+        const en = add([
+            sprite("bullet"),
+            pos(Enemy4.pos.x, Enemy4.pos.y + 20),
+            area(),
+            move(Player.pos.angle(Enemy4.pos), BULLET_SPEED),
+            offscreen({ destroy: true }),
+            "Bullet",
+        ])
+    }
+})
+loop(1, () => {
+    if (Player.exists()) {
+        if (!Enemy5.exists()) return
+        const en = add([
+            sprite("bullet"),
+            pos(Enemy5.pos.x, Enemy5.pos.y + 20),
+            area(),
+            move(Player.pos.angle(Enemy5.pos), BULLET_SPEED),
+            offscreen({ destroy: true }),
+            "Bullet",
+        ])
+    }
+})
+
 Player.onCollide("Bullet", (en) => {
     Player.hurt(0.5)
     addBlood({ pos: Player.pos, colour: 'red'})
     destroy(en)
+})
+Player.onCollide("portal", (Portal) => {
+    go("endgame")
 })
 
 // Here we move towards the player every frame if the current state is "move"
@@ -124,57 +204,108 @@ Enemy3.onStateUpdate("move", () => {
         Enemy3.move(dir.scale(ENEMY_SPEED))
     }
 })
-
-
-// add platforms
-        add([
-        // rect(350, 70),
-        pos(-100, height() - 70),
-        sprite("plat1"),
-        area(),
-        body({ isStatic: true }),
-        "obstacle"
-    ])
+Enemy4.onStateUpdate("move", () => {
+    if (!Player.exists()) return
+    let distance = Player.pos.x - Enemy4.pos.x;
+    if (distance < 250 && distance > -250) {
+        const dir = Player.pos.sub(Enemy4.pos).unit()
+        Enemy4.move(dir.scale(ENEMY_SPEED))
+    }
+})
+Enemy5.onStateUpdate("move", () => {
+    if (!Player.exists()) return
+    let distance = Player.pos.x - Enemy5.pos.x;
+    if (distance < 250 && distance > -250) {
+        const dir = Player.pos.sub(Enemy5.pos).unit()
+        Enemy5.move(dir.scale(ENEMY_SPEED))
+    }
+})
 
     add([
-        rect(200, 160),
-        pos(350, height() - 160),
+        rect(1350, 160),
+        pos(-1000, height() - 100),
         outline(2),
         area(),
         body({ isStatic: true }),
         color(127, 200, 255),
+        "obstacle"
+    ])
+    
+    add([
+        rect(200, 350),
+        pos(350, height() - 200),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(12, 200, 255),
         "obstacle"
     ])
     add([
         rect(250, 180),
-        pos(650, height() - 180),
+        pos(650, height() - 150),
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(147, 200, 255),
         "obstacle"
     ])
     add([
-        rect(200, 100),
-        pos(1000, height() - 300),
+        rect(200, 50),
+        pos(650, height() - 570),
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(147, 200, 255),
+        "obstacle"
+    ])
+    add([
+        rect(1700, 50),
+        pos(950, height() - 670),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(147, 200, 255),
+        "obstacle"
+    ])
+    add([
+        rect(150, 90),
+        pos(980, height() - 250),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 270, 255),
+        "obstacle"
+    ])
+    add([
+        rect(150, 50),
+        pos(960, height() - 470),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 270, 255),
+        "obstacle"
+    ])
+    add([
+        rect(200, 50),
+        pos(1200, height() - 350),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 220, 255),
         "obstacle"
     ])
     add([
         rect(100, 300),
-        pos(1400, height() - 300),
+        pos(1400, height() - 200),
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(197, 200, 255),
         "obstacle"
     ])
     add([
         rect(500, 200),
-        pos(1700, height() - 200),
+        pos(1800, height() - 200),
         outline(2),
         area(),
         body({ isStatic: true }),
@@ -191,7 +322,7 @@ Enemy3.onStateUpdate("move", () => {
         "obstacle"
     ])
     add([
-        rect(700, 200),
+        rect(2000, 200),
         pos(2600, height() - 200),
         outline(2),
         area(),
@@ -199,6 +330,7 @@ Enemy3.onStateUpdate("move", () => {
         color(127, 200, 255),
         "obstacle"
     ])
+
 
 
     // --The controls--
@@ -240,5 +372,11 @@ Enemy2.on("death", () => {
 Enemy3.on("death", () => {
     destroy(Enemy3)
 })
-
+Enemy4.on("death", () => {
+    destroy(Enemy4)
 })
+Enemy5.on("death", () => {
+    destroy(Enemy5)
+})
+    
+    })
