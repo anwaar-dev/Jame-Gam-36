@@ -159,6 +159,20 @@ Enemy3.onStateUpdate("move", () => {
         color(127, 200, 255),
         "obstacle"
     ])
+    // falling gameover logic
+    const fall = add([
+        rect(2000000, 160),
+        pos(-2000, height() - 1),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(0, 0, 0),
+        "fall"
+    ])
+    Player.onCollide("fall", () => {
+        Player.hurt(15)
+
+    });
     add([
         rect(250, 180),
         pos(650, height() - 180),
