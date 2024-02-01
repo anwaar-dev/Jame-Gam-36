@@ -184,7 +184,7 @@ scene("level2", () => {
         destroy(en)
     })
     Player.onCollide("portal", (Portal) => {
-        go("endgame")
+        go("end")
     })
 
     // Here we move towards the player every frame if the current state is "move"
