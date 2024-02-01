@@ -20,8 +20,9 @@ onUpdate(() => {
 // --loading sprites--
 
 loadSprite("player", "assets/characters/player.png")
-loadSprite("enemy1", "assets/characters/enemy.png")
-loadSprite("enemy2", "assets/characters/enemy2.png")
+loadSprite("enemy1", "assets/characters/enemy1.png")
+loadSprite("enemy2", "assets/characters/enemy1.png")
+loadSprite("enemy3", "assets/characters/enemy1.png")
 loadSprite("bullet", "assets/bullet.png")
 loadSprite("plat1", "assets/level1/level1-1.png")
 
@@ -41,25 +42,37 @@ const Player = add([
 // add Enemy to screen
 const Enemy1 = add([
     sprite("enemy1"),
-    pos(200, height() - 160),
+    pos(1450, height() - 350),
     area(),
     body(),
     anchor("center"),
     health(3),
     state("move", ["idle", "attack", "move"]),
-    "enemy"
+    "enemy1"
 ])
 
 // add Enemy to screen
 const Enemy2 = add([
     sprite("enemy2"),
-    pos(900, height() - 500),
+    pos(2000, height() - 500),
     area(),
     body(),
     anchor("center"),
     health(3),
     state("move", ["idle", "attack", "move"]),
     "enemy2"
+])
+
+// add Enemy to screen
+const Enemy3 = add([
+    sprite("enemy3"),
+    pos(750, height() - 200),
+    area(),
+    body(),
+    anchor("center"),
+    health(3),
+    state("move", ["idle", "attack", "move"]),
+    "enemy3"
 ])
 
 // --The controls--
@@ -87,18 +100,6 @@ onKeyPress("space", () => {
     }
 });
 
-// triggers when hp reaches 0
-Player.on("death", () => {
-    destroy(Player)
-    go("gameover")
-})
-Enemy1.on("death", () => {
-    destroy(Enemy1)
-})
-Enemy2.on("death", () => {
-    destroy(Enemy2)
-})
-
 let mousepos;
 // Player Shooting bullets at Enemy
 onClick(() => {
@@ -117,10 +118,23 @@ Enemy1.onCollide("MyBullet", (mb) => {
     destroy(mb)
 })
 Enemy2.onCollide("MyBullet", (mb) => {
-    Enemy2.hurt(0.5)
-    addBlood({ pos: Enemy2.pos, colour: 'red'})
+    Enemy2.hurt(1)
+    addBlood({ pos: Enemy2.pos, colour: 'green'})
     destroy(mb)
 })
+Enemy3.onCollide("MyBullet", (mb) => {
+    Enemy3.hurt(1)
+    addBlood({ pos: Enemy3.pos, colour: 'green'})
+    destroy(mb)
+})
+Player.onCollide("enemy2", () => {
+    Player.hurt(0.5)
+    addBlood({ pos: Player.pos, colour: 'red'})
+});
+Player.onCollide("enemy3", () => {
+    Player.hurt(0.5)
+    addBlood({ pos: Player.pos, colour: 'red'})
+});
 
 // enemy throwing bullets at player
 loop(1, () => {
@@ -137,18 +151,26 @@ loop(1, () => {
     }
 })
 Player.onCollide("Bullet", (en) => {
-    Player.hurt(1)
+    Player.hurt(0.5)
     addBlood({ pos: Player.pos, colour: 'red'})
     destroy(en)
 })
 
 // Here we move towards the player every frame if the current state is "move"
-Enemy1.onStateUpdate("move", () => {
+Enemy2.onStateUpdate("move", () => {
     if (!Player.exists()) return
-    let distance = Player.pos.x - Enemy1.pos.x;
+    let distance = Player.pos.x - Enemy2.pos.x;
     if (distance < 250 && distance > -250) {
-        const dir = Player.pos.sub(Enemy1.pos).unit()
-        Enemy1.move(dir.scale(ENEMY_SPEED))
+        const dir = Player.pos.sub(Enemy2.pos).unit()
+        Enemy2.move(dir.scale(ENEMY_SPEED))
+    }
+})
+Enemy3.onStateUpdate("move", () => {
+    if (!Player.exists()) return
+    let distance = Player.pos.x - Enemy3.pos.x;
+    if (distance < 250 && distance > -250) {
+        const dir = Player.pos.sub(Enemy3.pos).unit()
+        Enemy3.move(dir.scale(ENEMY_SPEED))
     }
 })
 
@@ -157,7 +179,6 @@ const scene = {
     menu: () => {},
 
     1: () => {
-
         // add platforms
         add([
         // rect(350, 70),
@@ -248,4 +269,19 @@ gameover: () => {
         scene[1]();
     });
 }
+
+// triggers when hp reaches 0
+Player.on("death", () => {
+    destroy(Player)
+    go("gameover")
+})
+Enemy1.on("death", () => {
+    destroy(Enemy1)
+})
+Enemy2.on("death", () => {
+    destroy(Enemy2)
+})
+Enemy3.on("death", () => {
+    destroy(Enemy3)
+})
 scene[1]();
