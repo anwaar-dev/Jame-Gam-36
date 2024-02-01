@@ -24,6 +24,8 @@ scene("game", () => {
     loadSprite("enemy2", "assets/characters/enemy2.png")
     loadSprite("bullet", "assets/bullet.png")
 
+    loadSprite("plat1", "assets/level1/level1-1.svg")
+
     // add Player to screen
     const Player = add([
         sprite("player"),
@@ -79,7 +81,7 @@ scene("game", () => {
     })
 
     Enemy2.onCollide("MyBullet", (mb) => {
-        Enemy2.hurt(0.5)
+        Enemy2.hurt(3)
         destroy(mb)
     })
 
@@ -106,11 +108,11 @@ scene("game", () => {
     // Here we move towards the player every frame if the current state is "move"
     Enemy1.onStateUpdate("move", () => {
         if (!Player.exists()) return
-            let distance = Player.pos.x - Enemy1.pos.x;
-            if (distance<250&&distance>-250) {
-                const dir = Player.pos.sub(Enemy1.pos).unit()
-                Enemy1.move(dir.scale(ENEMY_SPEED))
-            }
+            // let distance = Player.pos.x - Enemy1.pos.x;
+            // if (distance<250&&distance>-250) {
+            //     const dir = Player.pos.sub(Enemy1.pos).unit()
+            //     Enemy1.move(dir.scale(ENEMY_SPEED))
+            // }
     })
 
     // triggers when hp reaches 0
@@ -129,18 +131,17 @@ scene("game", () => {
     // add platforms
 
     add([
-        rect(width()*4, 58),
-        pos(-100, height() - 58),
-        outline(2),
+        // rect(350, 70),
+        pos(-100, height() - 70),
+        sprite("plat1"),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
         "obstacle"
     ])
 
     add([
-        rect(200, 30),
-        pos(0, height() - 160),
+        rect(200, 160),
+        pos(350, height() - 160),
         outline(2),
         area(),
         body({ isStatic: true }),
@@ -148,8 +149,8 @@ scene("game", () => {
         "obstacle"
     ])
     add([
-        rect(200, 30),
-        pos(430, height() - 180),
+        rect(250, 180),
+        pos(650, height() - 180),
         outline(2),
         area(),
         body({ isStatic: true }),
@@ -157,8 +158,44 @@ scene("game", () => {
         "obstacle"
     ])
     add([
-        rect(200, 30),
-        pos(800, height() - 350),
+        rect(200, 100),
+        pos(1000, height() - 300),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 200, 255),
+        "obstacle"
+    ])
+    add([
+        rect(100, 300),
+        pos(1400, height() - 300),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 200, 255),
+        "obstacle"
+    ])
+    add([
+        rect(500, 200),
+        pos(1700, height() - 200),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 200, 255),
+        "obstacle"
+    ])
+    add([
+        rect(400, 225),
+        pos(2200, height() - 225),
+        outline(2),
+        area(),
+        body({ isStatic: true }),
+        color(127, 200, 255),
+        "obstacle"
+    ])
+    add([
+        rect(700, 200),
+        pos(2600, height() - 200),
         outline(2),
         area(),
         body({ isStatic: true }),
