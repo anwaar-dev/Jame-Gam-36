@@ -175,7 +175,7 @@ Enemy3.onStateUpdate("move", () => {
 })
 
 // Game Scene
-const scene = {
+let scene = {
     menu: () => {},
 
     1: () => {
@@ -263,17 +263,18 @@ const scene = {
 
 gameover: () => {
     add([
-        text("gameover! press enter to retry")
+        text("gameover! press enter to retry"),
+        pos(100, 500)
     ]);
     onKeyPress("enter", () => {
-        scene[1]();
+        scene["1"]();
     });
 }
 
 // triggers when hp reaches 0
 Player.on("death", () => {
     destroy(Player)
-    go("gameover")
+    scene["gameover"]()
 })
 Enemy1.on("death", () => {
     destroy(Enemy1)
@@ -284,4 +285,4 @@ Enemy2.on("death", () => {
 Enemy3.on("death", () => {
     destroy(Enemy3)
 })
-scene[1]();
+scene["1"]();
