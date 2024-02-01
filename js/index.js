@@ -2,6 +2,13 @@ kaboom({
     background: [0, 0, 0, 0]
 })
 
+// --CONSTANTS--
+
+setGravity(1600)
+const SPEED = 300;
+const BULLET_SPEED = 700;
+const ENEMY_SPEED = 200;
+
 // --This will run every FRAME--
 
 onUpdate(() => {
@@ -28,7 +35,7 @@ const Player = add([
     health(5),
     anchor("center"),
     "player"
-])
+])    
 
 // add Enemy to screen
 const Enemy1 = add([
@@ -141,11 +148,7 @@ Enemy1.onStateUpdate("move", () => {
     }
 })
 
-// --CONSTANTS--
-setGravity(1600)
-const SPEED = 300;
-const BULLET_SPEED = 700;
-const ENEMY_SPEED = 200;
+// Game Scene
 const scene = {
     menu: () => {},
 
