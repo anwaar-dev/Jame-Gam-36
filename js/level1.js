@@ -16,7 +16,6 @@ const Ship = add([
     sprite("ship"),
     pos(5, height() - 100),
     area(),
-    stay(),
     anchor("center"),
 ]) 
 
