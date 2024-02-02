@@ -5,7 +5,7 @@ scene("level2", () => {
     // add Player to screen
     const Player = add([
         sprite("player"),
-        pos(2600, height() - 200),
+        pos(-500, height() - 170),
         area(),
         body(),
         stay(),
@@ -412,5 +412,3 @@ const Candle = add([
     })
 
 })
-
-go("level2")

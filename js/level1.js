@@ -282,7 +282,3 @@ Enemy3.on("death", () => {
 
 })
 
-
-
-// Go to scene
-go("level1")

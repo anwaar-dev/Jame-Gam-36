@@ -19,6 +19,11 @@ onUpdate(() => {
 
 // --loading sprites--
 
+loadSprite("menuBG", "assets/BG-menu.png")
+loadSprite("logo", "assets/logo-menu.png")
+loadSprite("btn", "assets/button.png")
+loadSprite("btn2", "assets/button2.png")
+loadSprite("credit", "assets/credit.png")
 loadSprite("player", "assets/characters/player.png")
 loadSprite("enemy1", "assets/characters/enemy1.png")
 loadSprite("enemy2", "assets/characters/enemy2.png")
@@ -37,18 +42,29 @@ loadSprite("portal", "assets/portal.png")
 // Gameover
 scene("gameover", () => {
     add([
-        rect(width(), height()),
-        pos(0, 0),
-        area(),
-        body({ isStatic: true }),
-        color(127, 200, 255),
-    ])
-    add([
-        text("Gameover! Press enter to play again"),
+        sprite("menuBG"),
         anchor("center"),
-        pos(width()/2, height()/2)
-    ]);
+        pos(width()/2, height()/2),
+    ])
+    const logo = add([
+        sprite("logo"),
+        anchor("center"),
+        pos(width()/2, 200),
+    ])
+    const button = add([
+        sprite("btn2"),
+        area(),
+        anchor("center"),
+        pos(width()/2, logo.pos.y+170)
+    ])
+    button.onClick(l)
+    add([
+        sprite("credit"),
+        anchor("center"),
+        pos(width()/2, height()-50)
+    ])
     onKeyPress("enter", () => {
         go("level1")
     });
 })
+function l(){go("level1")}
