@@ -44,6 +44,7 @@ loadSound("hit_blade", "assets/sounds/hit-blade.mp3")
 loadSound("die", "assets/sounds/die.mp3")
 loadSound("portal", "assets/sounds/portal.mp3")
 loadSound("BG", "assets/sounds/BG.mp3")
+loadSound("win", "assets/sounds/win.mp3")
 
 
 

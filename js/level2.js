@@ -203,6 +203,7 @@ scene("level2", () => {
         destroy(bn)
     })
     Player.onCollide("candle", (Portal) => {
+        play("win", {volume: 0.3})
         go("end")
     })
 
