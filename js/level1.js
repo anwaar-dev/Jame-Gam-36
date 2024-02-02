@@ -140,6 +140,7 @@ Player.onCollide("Bullet", (en) => {
     destroy(en)
 })
 Player.onCollide("portal", (Portal) => {
+    play("portal", {volume: 0.2})
     go("level2")
 })
 
