@@ -41,6 +41,7 @@ loadSound("hit_body", "assets/sounds/hit_body.mp3")
 loadSound("hit_metal", "assets/sounds/hit_metal.mp3")
 loadSound("hit_blade", "assets/sounds/hit-blade.mp3")
 loadSound("die", "assets/sounds/die.mp3")
+loadSound("BG", "assets/sounds/BG.mp3")
 
 
 
