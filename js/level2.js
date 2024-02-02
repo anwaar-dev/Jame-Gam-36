@@ -28,7 +28,7 @@ scene("level2", () => {
 
     // add Enemy to screen
     const Enemy2 = add([
-        sprite("enemy2"),
+        sprite("enemy1"),
         pos(2000, height() - 500),
         area(),
         body(),
@@ -247,7 +247,7 @@ scene("level2", () => {
     });
     add([
         rect(1350, 200),
-        pos(-1000, height() - 200),
+        pos(-1000, height() - 90),
         outline(2),
         area(),
         body({ isStatic: true }),
