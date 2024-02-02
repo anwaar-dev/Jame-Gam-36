@@ -25,6 +25,12 @@ const dialog = add([
     area(),
     anchor("center"),
 ]) 
+const dialog2 = add([
+    sprite("dialog2"),
+    pos(650, height() - 300),
+    area(),
+    anchor("center"),
+])
 
 // add Player to screen
 const Player = add([
