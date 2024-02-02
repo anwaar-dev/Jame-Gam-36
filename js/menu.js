@@ -26,7 +26,7 @@ scene("menu", () => {
     });
 })
 
-function f(){go("level2");play("BG", {volume: 0.07,loop: true});play("click", {volume: 0.5})}
+function f(){go("level1");play("BG", {volume: 0.07,loop: true});play("click", {volume: 0.5})}
 
 // Go to scene
 go("menu")
