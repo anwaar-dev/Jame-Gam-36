@@ -38,7 +38,7 @@ scene("level2", () => {
         "enemy2"
     ])
     const Enemy3 = add([
-        sprite("enemy3"),
+        sprite("enemy2"),
         pos(750, height() - 200),
         area(),
         body(),
@@ -251,7 +251,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(104, 169, 134),
         "obstacle"
     ])
 

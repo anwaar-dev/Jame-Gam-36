@@ -21,7 +21,7 @@ onUpdate(() => {
 
 loadSprite("player", "assets/characters/player.png")
 loadSprite("enemy1", "assets/characters/enemy1.png")
-loadSprite("enemy2", "assets/characters/enemy1.png")
+loadSprite("enemy2", "assets/characters/enemy2.png")
 loadSprite("enemy3", "assets/characters/enemy1.png")
 loadSprite("enemy_fly", "assets/characters/enemy-fly.png")
 loadSprite("bullet", "assets/bullet.png")

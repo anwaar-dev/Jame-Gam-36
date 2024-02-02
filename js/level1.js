@@ -58,7 +58,7 @@ const Enemy2 = add([
 
 // add Enemy to screen
 const Enemy3 = add([
-    sprite("enemy3"),
+    sprite("enemy2"),
     pos(750, height() - 200),
     area(),
     body(),
