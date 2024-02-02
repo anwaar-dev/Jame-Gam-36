@@ -74,7 +74,7 @@ const Portal = add([
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "portal"
 ])
 
@@ -163,10 +163,10 @@ Enemy3.onStateUpdate("move", () => {
     add([
         rect(200, 160),
         pos(350, height() - 160),
-        outline(2),
+        outline(),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     // falling gameover logic
@@ -189,7 +189,7 @@ Enemy3.onStateUpdate("move", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -198,7 +198,7 @@ Enemy3.onStateUpdate("move", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -207,7 +207,7 @@ Enemy3.onStateUpdate("move", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -216,7 +216,7 @@ Enemy3.onStateUpdate("move", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -225,7 +225,7 @@ Enemy3.onStateUpdate("move", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -234,7 +234,7 @@ Enemy3.onStateUpdate("move", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
 
