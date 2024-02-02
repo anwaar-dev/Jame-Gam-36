@@ -20,6 +20,7 @@ scene("end", () => {
         anchor("center"),
         pos(width()/2, logo.pos.y+300)
     ])
+    button.onClick(l)
     add([
         sprite("credit"),
         anchor("center"),
@@ -29,5 +30,3 @@ scene("end", () => {
         go("level1")
     });
 })
-
-go("end")

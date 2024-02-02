@@ -26,7 +26,7 @@ scene("menu", () => {
     });
 })
 
-function f(){go("level2")}
+function f(){go("level1")}
 
 // Go to scene
-go("end")
+go("menu")
