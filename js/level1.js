@@ -98,12 +98,12 @@ Enemy1.onCollide("MyBullet", (mb) => {
 })
 Enemy2.onCollide("MyBullet", (mb) => {
     Enemy2.hurt(1)
-    addBlood({ pos: Enemy2.pos, colour: 'green'})
+    addBlood({ pos: Enemy2.pos, colour: 'slate'})
     destroy(mb)
 })
 Enemy3.onCollide("MyBullet", (mb) => {
     Enemy3.hurt(1)
-    addBlood({ pos: Enemy3.pos, colour: 'green'})
+    addBlood({ pos: Enemy3.pos, colour: 'slate'})
     destroy(mb)
 })
 Player.onCollide("enemy2", () => {
@@ -132,6 +132,7 @@ loop(1, () => {
 Player.onCollide("Bullet", (en) => {
     Player.hurt(0.5)
     addBlood({ pos: Player.pos, colour: 'red'})
+    play("hit", {volume: 0.1})
     destroy(en)
 })
 Player.onCollide("portal", (Portal) => {

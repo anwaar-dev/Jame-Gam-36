@@ -37,6 +37,8 @@ loadSprite("candle", "assets/candle.png")
 loadSprite("portal", "assets/portal.png")
 loadSprite("end", "assets/end.png")
 
+loadSound("hit", "assets/sounds/hit_body.mp3")
+
 
 
 
