@@ -279,6 +279,7 @@ onKeyPress("space", () => {
 
 // triggers when hp reaches 0
 Player.on("death", () => {
+    play("hit_body", {volume: 0.3})
     destroy(Player)
 	go("gameover")
 })

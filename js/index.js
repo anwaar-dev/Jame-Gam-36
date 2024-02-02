@@ -38,12 +38,14 @@ loadSprite("portal", "assets/portal.png")
 loadSprite("end", "assets/end.png")
 loadSprite("dialog", "assets/dialog.png")
 
+loadSound("click", "assets/sounds/click.mp3")
 loadSound("hit_body", "assets/sounds/hit_body.mp3")
 loadSound("hit_metal", "assets/sounds/hit_metal.mp3")
 loadSound("hit_blade", "assets/sounds/hit-blade.mp3")
 loadSound("die", "assets/sounds/die.mp3")
 loadSound("portal", "assets/sounds/portal.mp3")
 loadSound("BG", "assets/sounds/BG.mp3")
+loadSound("win", "assets/sounds/win.mp3")
 
 
 
@@ -75,5 +77,5 @@ scene("gameover", () => {
     onKeyPress("enter", () => {
         go("level1")
     });
-})
-function l(){go("level1")}
+})      
+function l(){go("level1");play("click", {volume: 0.5})}

@@ -203,6 +203,7 @@ scene("level2", () => {
         destroy(bn)
     })
     Player.onCollide("candle", (Portal) => {
+        play("win", {volume: 0.3})
         go("end")
     })
 
@@ -400,6 +401,7 @@ const Candle = add([
 
     // triggers when hp reaches 0
     Player.on("death", () => {
+        play("hit_body", {volume: 0.3})
         destroy(Player)
         go("gameover")
     })
