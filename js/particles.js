@@ -16,6 +16,7 @@ function addBlood(opt = {}) {
 		let clr;
 		if (opt.colour=='red'){clr=rgb(138,23,24);}
 		else if (opt.colour=='green'){clr=rgb(0,249,173)}
+		else if (opt.colour=='blue'){clr=rgb(0,255,247)}
 		else{clr=rgb(0,0,0)}
 		const p = add([
 			pos(sample(opt.pos ?? vec2(0, 0))),

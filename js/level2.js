@@ -5,7 +5,7 @@ scene("level2", () => {
     // add Player to screen
     const Player = add([
         sprite("player"),
-        pos(-500, height() - 160),
+        pos(2600, height() - 200),
         area(),
         body(),
         stay(),
@@ -48,34 +48,24 @@ scene("level2", () => {
         "enemy3"
     ])
     const Enemy4 = add([
-        sprite("enemy4"),
-        pos(4200, height() - 800),
+        sprite("enemy_fly"),
+        pos(4200, height() - 600),
         area(),
         anchor("center"),
-        health(5),
+        health(10),
         state("move", ["idle", "attack", "move"]),
         "enemy4"
     ])
     const Enemy5 = add([
-        sprite("enemy5"),
-        pos(3500, height() - 800),
+        sprite("enemy_fly"),
+        pos(3500, height() - 500),
         area(),
         anchor("center"),
-        health(5),
+        health(10),
         state("move", ["idle", "attack", "move"]),
         "enemy4"
     ])
 
-    // Portal
-    const Portal = add([
-        rect(100, 100),
-        pos(4700, height() - 400),
-        outline(2),
-        area(),
-        body({ isStatic: true }),
-        color(127, 200, 255),
-        "portal"
-    ])
 
     let mousepos;
     // Player Shooting bullets at Enemy
@@ -106,12 +96,12 @@ scene("level2", () => {
     })
     Enemy4.onCollide("MyBullet", (mb) => {
         Enemy4.hurt(1)
-        addBlood({ pos: Enemy4.pos, colour: 'green' })
+        addBlood({ pos: Enemy4.pos, colour: 'blue' })
         destroy(mb)
     })
     Enemy5.onCollide("MyBullet", (mb) => {
         Enemy5.hurt(1)
-        addBlood({ pos: Enemy5.pos, colour: 'green' })
+        addBlood({ pos: Enemy5.pos, colour: 'blue' })
         destroy(mb)
     })
     Player.onCollide("enemy2", () => {
@@ -151,27 +141,43 @@ scene("level2", () => {
             ])
         }
     })
-    loop(1, () => {
+    loop(0.7, () => {
         if (Player.exists()) {
             if (!Enemy4.exists()) return
             const en = add([
                 sprite("bullet"),
                 pos(Enemy4.pos.x, Enemy4.pos.y + 20),
                 area(),
-                move(Player.pos.angle(Enemy4.pos), BULLET_SPEED),
+                move(Player.pos.angle(Enemy4.pos), BULLET_SPEED+50),
+                offscreen({ destroy: true }),
+                "Bullet",
+            ])
+            const bn = add([
+                sprite("bullet2"),
+                pos(Enemy4.pos.x, Enemy4.pos.y + 20),
+                area(),
+                move(Player.pos.angle(Enemy4.pos), BULLET_SPEED+100),
                 offscreen({ destroy: true }),
                 "Bullet",
             ])
         }
     })
-    loop(1, () => {
+    loop(0.7, () => {
         if (Player.exists()) {
             if (!Enemy5.exists()) return
             const en = add([
                 sprite("bullet"),
                 pos(Enemy5.pos.x, Enemy5.pos.y + 20),
                 area(),
-                move(Player.pos.angle(Enemy5.pos), BULLET_SPEED),
+                move(Player.pos.angle(Enemy5.pos), BULLET_SPEED+50),
+                offscreen({ destroy: true }),
+                "Bullet",
+            ])
+            const bn = add([
+                sprite("bullet2"),
+                pos(Enemy5.pos.x, Enemy5.pos.y + 20),
+                area(),
+                move(Player.pos.angle(Enemy5.pos), BULLET_SPEED+100),
                 offscreen({ destroy: true }),
                 "Bullet",
             ])
@@ -183,7 +189,12 @@ scene("level2", () => {
         addBlood({ pos: Player.pos, colour: 'red' })
         destroy(en)
     })
-    Player.onCollide("portal", (Portal) => {
+    Player.onCollide("Bullet", (en) => {
+        Player.hurt(1)
+        addBlood({ pos: Player.pos, colour: 'red' })
+        destroy(en)
+    })
+    Player.onCollide("candle", (Portal) => {
         go("end")
     })
 
@@ -344,6 +355,16 @@ scene("level2", () => {
         "obstacle"
     ])
 
+// add Candle to screen
+const Candle = add([
+    sprite("candle"),
+    pos(4400, height() - 270),
+    area(),
+    stay(),
+    anchor("center"),
+    "candle"
+]) 
+
     // --The controls--
 
     // move by SPEED px per frame
@@ -391,3 +412,5 @@ scene("level2", () => {
     })
 
 })
+
+go("level2")

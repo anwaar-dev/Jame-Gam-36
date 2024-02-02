@@ -1,11 +1,29 @@
 // Game Scene 1
 scene("level1", () => {
 
+// add 1 platform, so it has lower z-index from ship
+        add([
+        // rect(350, 70),
+        pos(-100, height() - 70),
+        sprite("plat1"),
+        area(),
+        body({ isStatic: true }),
+        "obstacle"
+    ])
+
+// add Spaceship to screen
+const Ship = add([
+    sprite("ship"),
+    pos(5, height() - 100),
+    area(),
+    stay(),
+    anchor("center"),
+]) 
 
 // add Player to screen
 const Player = add([
     sprite("player"),
-    pos(0, height() - 160),
+    pos(200, height() - 160),
     area(),
     body(),
     stay(),
@@ -141,14 +159,6 @@ Enemy3.onStateUpdate("move", () => {
 
 
 // add platforms
-        add([
-        // rect(350, 70),
-        pos(-100, height() - 70),
-        sprite("plat1"),
-        area(),
-        body({ isStatic: true }),
-        "obstacle"
-    ])
 
     add([
         rect(200, 160),
