@@ -35,6 +35,7 @@ loadSprite("plat1", "assets/level1/level1-1.png")
 loadSprite("ship", "assets/level1/ship.png")
 loadSprite("candle", "assets/candle.png")
 loadSprite("portal", "assets/portal.png")
+loadSprite("end", "assets/end.png")
 
 
 

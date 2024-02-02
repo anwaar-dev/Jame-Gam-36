@@ -29,4 +29,4 @@ scene("menu", () => {
 function f(){go("level2")}
 
 // Go to scene
-go("menu")
+go("end")
