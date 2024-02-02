@@ -8,7 +8,6 @@ scene("level2", () => {
         pos(-500, height() - 170),
         area(),
         body(),
-        stay(),
         health(15),
         anchor("center"),
         "player"
@@ -81,35 +80,42 @@ scene("level2", () => {
     })
     Enemy1.onCollide("MyBullet", (mb) => {
         Enemy1.hurt(1)
+        play("hit_metal", {volume: 0.1})
         addBlood({ pos: Enemy1.pos, colour: 'green' })
         destroy(mb)
     })
     Enemy2.onCollide("MyBullet", (mb) => {
         Enemy2.hurt(1)
+        play("hit_metal", {volume: 0.1})
         addBlood({ pos: Enemy2.pos, colour: 'green' })
         destroy(mb)
     })
     Enemy3.onCollide("MyBullet", (mb) => {
         Enemy3.hurt(1)
+        play("hit_body", {volume: 0.1})
         addBlood({ pos: Enemy3.pos, colour: 'green' })
         destroy(mb)
     })
     Enemy4.onCollide("MyBullet", (mb) => {
         Enemy4.hurt(1)
+        play("hit_metal", {volume: 0.1})
         addBlood({ pos: Enemy4.pos, colour: 'blue' })
         destroy(mb)
     })
     Enemy5.onCollide("MyBullet", (mb) => {
         Enemy5.hurt(1)
+        play("hit_metal", {volume: 0.1})
         addBlood({ pos: Enemy5.pos, colour: 'blue' })
         destroy(mb)
     })
     Player.onCollide("enemy2", () => {
         Player.hurt(0.5)
+        play("hit_blade", {volume: 0.1})
         addBlood({ pos: Player.pos, colour: 'red' })
     });
     Player.onCollide("enemy3", () => {
         Player.hurt(0.5)
+        play("hit_blade", {volume: 0.1})
         addBlood({ pos: Player.pos, colour: 'red' })
     });
 
@@ -179,20 +185,22 @@ scene("level2", () => {
                 area(),
                 move(Player.pos.angle(Enemy5.pos), BULLET_SPEED+100),
                 offscreen({ destroy: true }),
-                "Bullet",
+                "Bullet2",
             ])
         }
     })
 
     Player.onCollide("Bullet", (en) => {
         Player.hurt(0.5)
+        play("hit_body", {volume: 0.1})
         addBlood({ pos: Player.pos, colour: 'red' })
         destroy(en)
     })
-    Player.onCollide("Bullet", (en) => {
+    Player.onCollide("Bullet2", (bn) => {
         Player.hurt(1)
+        play("hit_body", {volume: 0.2})
         addBlood({ pos: Player.pos, colour: 'red' })
-        destroy(en)
+        destroy(bn)
     })
     Player.onCollide("candle", (Portal) => {
         go("end")
@@ -397,18 +405,22 @@ const Candle = add([
     })
     Enemy1.on("death", () => {
         destroy(Enemy1)
+        play("die", {volume: 0.1})
     })
     Enemy2.on("death", () => {
         destroy(Enemy2)
+        play("die", {volume: 0.1})
     })
     Enemy3.on("death", () => {
         destroy(Enemy3)
     })
     Enemy4.on("death", () => {
         destroy(Enemy4)
+        play("die", {volume: 0.1})
     })
     Enemy5.on("death", () => {
         destroy(Enemy5)
+        play("die", {volume: 0.1})
     })
 
 })

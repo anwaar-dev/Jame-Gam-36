@@ -25,7 +25,6 @@ const Player = add([
     pos(200, height() - 160),
     area(),
     body(),
-    stay(),
     health(5),
     anchor("center"),
     "player"
@@ -93,25 +92,30 @@ onClick(() => {
 })
 Enemy1.onCollide("MyBullet", (mb) => {
     Enemy1.hurt(1)
+    play("hit_body", {volume: 0.1})
     addBlood({ pos: Enemy1.pos, colour: 'green'})
     destroy(mb)
 })
 Enemy2.onCollide("MyBullet", (mb) => {
     Enemy2.hurt(1)
+    play("hit_metal", {volume: 0.1})
     addBlood({ pos: Enemy2.pos, colour: 'slate'})
     destroy(mb)
 })
 Enemy3.onCollide("MyBullet", (mb) => {
     Enemy3.hurt(1)
+    play("hit_metal", {volume: 0.1})
     addBlood({ pos: Enemy3.pos, colour: 'slate'})
     destroy(mb)
 })
 Player.onCollide("enemy2", () => {
     Player.hurt(0.5)
+    play("hit_blade", {volume: 0.1})
     addBlood({ pos: Player.pos, colour: 'red'})
 });
 Player.onCollide("enemy3", () => {
     Player.hurt(0.5)
+    play("hit_blade", {volume: 0.1})
     addBlood({ pos: Player.pos, colour: 'red'})
 });
 
@@ -132,7 +136,7 @@ loop(1, () => {
 Player.onCollide("Bullet", (en) => {
     Player.hurt(0.5)
     addBlood({ pos: Player.pos, colour: 'red'})
-    play("hit", {volume: 0.1})
+    play("hit_body", {volume: 0.1})
     destroy(en)
 })
 Player.onCollide("portal", (Portal) => {
@@ -275,9 +279,11 @@ Enemy1.on("death", () => {
 })
 Enemy2.on("death", () => {
     destroy(Enemy2)
+    play("die", {volume: 0.1})
 })
 Enemy3.on("death", () => {
     destroy(Enemy3)
+    play("die", {volume: 0.1})
 })
 
 })
