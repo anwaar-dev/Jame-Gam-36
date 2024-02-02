@@ -36,6 +36,7 @@ loadSprite("ship", "assets/level1/ship.png")
 loadSprite("candle", "assets/candle.png")
 loadSprite("portal", "assets/portal.png")
 loadSprite("end", "assets/end.png")
+loadSprite("dialog", "assets/dialog.png")
 
 loadSound("click", "assets/sounds/click.mp3")
 loadSound("hit_body", "assets/sounds/hit_body.mp3")

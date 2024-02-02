@@ -18,6 +18,13 @@ const Ship = add([
     area(),
     anchor("center"),
 ]) 
+// add dialog box
+const dialog = add([
+    sprite("dialog"),
+    pos(30, height() - 210),
+    area(),
+    anchor("center"),
+]) 
 
 // add Player to screen
 const Player = add([
