@@ -21,7 +21,7 @@ scene("level2", () => {
         area(),
         body(),
         anchor("center"),
-        health(3),
+        health(5),
         state("move", ["idle", "attack", "move"]),
         "enemy1"
     ])
@@ -33,7 +33,7 @@ scene("level2", () => {
         area(),
         body(),
         anchor("center"),
-        health(3),
+        health(5),
         state("move", ["idle", "attack", "move"]),
         "enemy2"
     ])
@@ -43,7 +43,7 @@ scene("level2", () => {
         area(),
         body(),
         anchor("center"),
-        health(3),
+        health(5),
         state("move", ["idle", "attack", "move"]),
         "enemy3"
     ])
@@ -52,7 +52,7 @@ scene("level2", () => {
         pos(4200, height() - 600),
         area(),
         anchor("center"),
-        health(10),
+        health(8),
         state("move", ["idle", "attack", "move"]),
         "enemy4"
     ])
@@ -61,7 +61,7 @@ scene("level2", () => {
         pos(3500, height() - 500),
         area(),
         anchor("center"),
-        health(10),
+        health(8),
         state("move", ["idle", "attack", "move"]),
         "enemy4"
     ])
@@ -246,12 +246,12 @@ scene("level2", () => {
 
     });
     add([
-        rect(1350, 160),
-        pos(-1000, height() - 100),
+        rect(1350, 200),
+        pos(-1000, height() - 200),
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(104, 169, 134),
+        color(139, 237, 107),
         "obstacle"
     ])
 
@@ -261,7 +261,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(12, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -270,7 +270,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(147, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -279,7 +279,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(147, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -288,7 +288,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(147, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -297,7 +297,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 270, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -306,7 +306,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 270, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -315,7 +315,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 220, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -324,7 +324,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(197, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -333,7 +333,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -342,7 +342,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
     add([
@@ -351,7 +351,7 @@ scene("level2", () => {
         outline(2),
         area(),
         body({ isStatic: true }),
-        color(127, 200, 255),
+        color(139, 237, 107),
         "obstacle"
     ])
 
